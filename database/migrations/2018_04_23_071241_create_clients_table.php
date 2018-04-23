@@ -17,6 +17,8 @@ class CreateClientsTable extends Migration
             $table->increments('id');
             $table->string('url');
             $table->string('project');
+            $table->string('input');
+            $table->string('verb');
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@
   <body>
     <div class="container">
       <h2>Register URI Endpoints HERE</h2><br/>
-      <form method="post" action="{{url('clients')}}" enctype="multipart/form-data">
+      <form method="post" action="{{url('clients.index')}}" enctype="multipart/form-data">
         @csrf
         <div class="row">
           <div class="col-md-4"></div>
