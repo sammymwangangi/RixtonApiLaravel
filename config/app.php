@@ -151,6 +151,7 @@ return [
          * Package Service Providers...
          */
         Asvae\ApiTester\ServiceProvider::class,
+        Ixudra\Curl\CurlServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -208,6 +209,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Curl' => Ixudra\Curl\Facades\Curl::class,
 
     ],
 
