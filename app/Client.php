@@ -8,7 +8,12 @@ class Client extends Model
 {
     protected $fillable = [
 
-        'url','project'
+        'url','project','verb','input'
 
     ];
+
+    public function projects(){
+        
+        return $this->belongsTo('App\Project');
+    }
 }

@@ -28,6 +28,18 @@
             <input type="text" class="form-control" name="url" value="{{$client->url}}">
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="form-group col-md-4">
+            <label for="Verb">Verb:</label>
+            <select name="verb">
+                <option value="GET" @if($client->verb=="GET") selected @endif>GET</option>
+                <option value="POST" @if($client->verb=="POST") selected @endif>POST</option>
+              </select>
+          </div>
+        </div>
+
         <div class="row">
           <div class="col-md-4"></div>
             <div class="form-group col-md-4">

@@ -32,12 +32,9 @@
   <div class="container">
     <h3>Projects</h3>
     <ol class="rectangle-list">
-      <li><a href="">Bweza</a></li>                       
-      <li><a href="">Banco</a></li>                       
-      <li><a href="">Alana</a></li>                       
-      <li><a href="">Amandla</a></li>                       
-      <li><a href="">Ultracity</a></li>                       
-      <li><a href="">MtaaPay</a></li>                       
+      @foreach($projects as $project)
+      <li><a href="">{{$project->name}}</a></li> 
+      @endforeach                                             
     </ol>
   </div>
         @if ($message = Session::get('success'))
@@ -54,6 +51,8 @@
       <tr>
         <th>ID</th>
         <th>URL</th>
+        <th>VERB</th>
+        <th>INPUT</th>
         <th>Project Name</th>
         <th colspan="2">Action</th>
       </tr>
@@ -64,6 +63,8 @@
       <tr>
         <td>{{$client['id']}}</td>
         <td><a href="{{$client['url']}}">{{$client['url']}}</a></td>
+        <td>{{$client['verb']}}</td>
+        <td>{{$client['input']}}</td>
         <td>{{$client['project']}}</td>
         
         <td><a href="{{action('ClientsController@edit', $client['id'])}}" class="btn btn-warning">Edit</a></td>

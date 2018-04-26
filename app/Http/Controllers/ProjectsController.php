@@ -3,22 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Client;
 use App\Project;
 
-class ClientsController extends Controller
+class ProjectsController extends Controller
 {
-        /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
     /**
      * Display a listing of the resource.
      *
@@ -26,9 +14,7 @@ class ClientsController extends Controller
      */
     public function index()
     {
-        $clients=Client::all();
-        $projects=Project::get();
-        return view('clients.index',compact('clients', 'projects'));
+        //
     }
 
     /**
@@ -38,7 +24,7 @@ class ClientsController extends Controller
      */
     public function create()
     {
-        return view('clients.create');
+        //
     }
 
     /**
@@ -49,22 +35,7 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
-
-            'url' => 'required',
-            'project' => 'required',
-            'verb' => 'required',
-            'input' => 'required',
-
-        ]);
-
-
-        Client::create($request->all());
-
-
-        return redirect()->route('clients.index')
-
-                        ->with('success','Client created successfully.');
+        //
     }
 
     /**
@@ -86,8 +57,7 @@ class ClientsController extends Controller
      */
     public function edit($id)
     {
-        $client = Client::find($id);
-        return view('clients.edit',compact('client','id'));
+        //
     }
 
     /**
@@ -98,15 +68,8 @@ class ClientsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    
     {
-        $client= Client::find($id);
-        $client->url=$request->get('url');
-        $client->project=$request->get('project');
-        $client->verb=$request->get('verb');
-        $client->input=$request->get('input');
-        $client->save();
-        return redirect('clients');
+        //
     }
 
     /**
@@ -117,8 +80,6 @@ class ClientsController extends Controller
      */
     public function destroy($id)
     {
-        $client = Client::find($id);
-        $client->delete();
-        return redirect('clients')->with('success','Information has been  deleted');
+        //
     }
 }

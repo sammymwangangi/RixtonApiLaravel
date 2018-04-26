@@ -15,7 +15,7 @@
   <body>
     <div class="container">
       <h2>Register URI Endpoints HERE</h2><br/>
-      <form method="post" action="{{url('clients.index')}}" enctype="multipart/form-data">
+      <form method="post" action="{{url('clients')}}" enctype="multipart/form-data">
         @csrf
         <div class="row">
           <div class="col-md-4"></div>
@@ -24,17 +24,36 @@
             <input type="text" class="form-control" name="url">
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="form-group col-md-4">
+            <label for="Input">Input:</label>
+            <select name="input">
+                <option value="json">application/json</option>
+              </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="form-group col-md-4">
+            <label for="Verb">Verb:</label>
+            <select name="verb">
+                <option value="GET">GET</option>
+                <option value="POST">POST</option>
+              </select>
+          </div>
+        </div>
+
         <div class="row">
           <div class="col-md-4"></div>
             <div class="form-group col-md-4">
               <label for="Project">Project</label>
               <select name="project">
-                <option value="Bweza">Bweza</option>
-                <option value="Banco">Banco</option>
-                <option value="Alana">Alana</option>
-                <option value="UltraCity">UltraCity</option>
-                <option value="MtaaPay">MtaaPay</option>
-                <option value="Amandla">Amandla</option>
+                        @foreach ($projects as $project)
+                            <option value="{{ $project->id }}">{{ $project->name }}</option>
+                        @endforeach
               </select>
             </div>
           </div>
