@@ -46,7 +46,7 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

@@ -33,7 +33,7 @@
     <h3>Projects</h3>
     <ol class="rectangle-list">
       @foreach($projects as $project)
-      <li><a href="">{{$project->name}}</a></li> 
+      <li><a href="{{route('project->id')}}">{{$project->name}}</a></li> 
       @endforeach                                             
     </ol>
   </div>
