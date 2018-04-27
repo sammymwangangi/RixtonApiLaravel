@@ -8,13 +8,17 @@ use App\Client;
 
 class ApiTestController extends Controller
 {
+
+
+
+
     public function apitest($project_id){
 
         //return $id;
 
     	$clients = Client::where('project_id', $project_id)->get();
 
-    	// $result[] = ;
+    	 //$result[] = ;
 
     	 foreach($clients as $client){
 
@@ -28,7 +32,7 @@ class ApiTestController extends Controller
 
     	}
 
-//return $array;
+        //return $array;
     
     	return $result;
 
@@ -38,19 +42,34 @@ class ApiTestController extends Controller
     public static function testGet($url,$project_id){
 
     	$header = array('Accept-Language: en');
-$curl = curl_init();
-curl_setopt($curl, CURLOPT_URL, $url);
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($curl, CURLOPT_HEADER, false);
-curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
-//$httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-$output = curl_exec($curl);
-curl_close($curl);
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+        //$httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        $output = curl_exec($curl);
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        
+        curl_close($curl);
 
 
-//start logging url,project_id,output
+        if ($err) {
 
-//end logging
+        //start logging url,project_id,error
+
+        //end logging
+
+          return "cURL Error #:" . $err;
+        } else {
+        //start logging url,project_id,response
+
+        //end logging
+          return $response;
+        }
+        //end logging
 
         return $output;
 
@@ -58,46 +77,46 @@ curl_close($curl);
     }
 
     public static function testPost($url,$postdata,$project_id){
-  //$post = ['batch_id'=> "2"];
+      //$post = ['batch_id'=> "2"];
 
-//return json_encode($postdata);
+    //return json_encode($postdata);
 
-$curl = curl_init();
+        $curl = curl_init();
 
-curl_setopt_array($curl, array(
-  CURLOPT_PORT => "8080",
-  CURLOPT_URL => $url,
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => "",
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 30,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => json_encode($postdata),
-  CURLOPT_HTTPHEADER => array(
-    "Cache-Control: no-cache",
-    "Postman-Token: 6cc49925-de7d-4b35-b9eb-7bb4667c36de"
-  ),
-));
+        curl_setopt_array($curl, array(
+          CURLOPT_PORT => "8080",
+          CURLOPT_URL => $url,
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => "",
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 30,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => "POST",
+          CURLOPT_POSTFIELDS => json_encode($postdata),
+          CURLOPT_HTTPHEADER => array(
+            "Cache-Control: no-cache",
+            "Postman-Token: 6cc49925-de7d-4b35-b9eb-7bb4667c36de"
+          ),
+        ));
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
 
-curl_close($curl);
+        curl_close($curl);
 
-if ($err) {
+        if ($err) {
 
-//start logging url,project_id,error
+        //start logging url,project_id,input,error
 
-//end logging
+        //end logging
 
-  return "cURL Error #:" . $err;
-} else {
-//start logging url,project_id,input,response
+          return "cURL Error #:" . $err;
+        } else {
+        //start logging url,project_id,input,response
 
-//end logging
-  return $response;
-}
+        //end logging
+          return $response;
+        }
 
-     }
+             }
 }

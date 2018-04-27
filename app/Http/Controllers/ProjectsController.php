@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
-
+use App\Client;
 class ProjectsController extends Controller
 {
     /**
@@ -14,7 +14,7 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**

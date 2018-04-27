@@ -38,7 +38,8 @@ class ClientsController extends Controller
      */
     public function create()
     {
-        return view('clients.create');
+        $projects=Project::get();
+        return view('clients.create',compact('projects'));
     }
 
     /**
@@ -49,22 +50,26 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
+
         request()->validate([
 
             'url' => 'required',
-            'project' => 'required',
-            'verb' => 'required',
             'input' => 'required',
+            'verb' => 'required',
+            'project_id' => 'required'
+            
+            
 
         ]);
+
 
 
         Client::create($request->all());
 
 
-        return redirect()->route('clients.index')
+            return redirect()->route('clients.index')
 
-                        ->with('success','Client created successfully.');
+                 ->with('success','Client created successfully.');
     }
 
     /**
@@ -87,7 +92,8 @@ class ClientsController extends Controller
     public function edit($id)
     {
         $client = Client::find($id);
-        return view('clients.edit',compact('client','id'));
+        $projects=Project::get();
+        return view('clients.edit',compact('client','id','projects'));
     }
 
     /**
@@ -102,7 +108,7 @@ class ClientsController extends Controller
     {
         $client= Client::find($id);
         $client->url=$request->get('url');
-        $client->project=$request->get('project');
+        $client->project_id=$request->get('project_id');
         $client->verb=$request->get('verb');
         $client->input=$request->get('input');
         $client->save();

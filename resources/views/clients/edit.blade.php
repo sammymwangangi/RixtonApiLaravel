@@ -1,67 +1,69 @@
-<!-- create.blade.php -->
+@extends('layouts.app')
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Api Tester  </title>
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">  
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">  
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>  
-  </head>
-  <body>
-    <div class="container">
-      <h2>Edit URI Endpoints HERE</h2><br/>
-      <form action="{{ route('clients.update',$client->id) }}" method="POST">
+@section('content')
 
-        @csrf
+  <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card border-info mb-3">
+                <div class="card-header bg-info text-white text-center" style="font-size: 14px;"><b>EDIT API HERE</b></div>
 
-        @method('PUT')
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
 
-        <div class="row">
-          <div class="col-md-4"></div>
-          <div class="form-group col-md-4">
-            <label for="url">Uri:</label>
-            <input type="text" class="form-control" name="url" value="{{$client->url}}">
-          </div>
-        </div>
+                    <form action="{{ route('clients.update', ['id' => $client->id]) }}" method="POST">
 
-        <div class="row">
-          <div class="col-md-4"></div>
-          <div class="form-group col-md-4">
-            <label for="Verb">Verb:</label>
-            <select name="verb">
-                <option value="GET" @if($client->verb=="GET") selected @endif>GET</option>
-                <option value="POST" @if($client->verb=="POST") selected @endif>POST</option>
-              </select>
-          </div>
-        </div>
+                          @csrf
 
-        <div class="row">
-          <div class="col-md-4"></div>
-            <div class="form-group col-md-4">
-              <label for="Project">Project</label>
-              <select name="project">
-                <option value="Bweza" @if($client->project=="Bweza") selected @endif>Bweza</option>
-                <option value="Banco" @if($client->project=="Banco") selected @endif>Banco</option>
-                <option value="Alana" @if($client->project=="Alana") selected @endif>Alana</option>
-                <option value="UltraCity" @if($client->project=="UltraCity") selected @endif>UltraCity</option>
-                <option value="MtaaPay" @if($client->project=="MtaaPay") selected @endif>MtaaPay</option>
-                <option value="Amandla" @if($client->project=="Amandla") selected @endif>Amandla</option>
-              </select>
+                          @method('PUT')
+
+                        <div class="form-group">
+                          <label for="Url">Url:</label>
+                          <textarea class="form-control" name="url" rows="3">{{$client->url}}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="Input">Input:</label>
+                          <textarea class="form-control" name="input" rows="3">{{$client->input}}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="Verb">Verb:</label>
+                          <select name="verb">
+                            <option value="GET" @if($client->verb=="GET") selected @endif>GET</option>
+                            <option value="POST" @if($client->verb=="POST") selected @endif>POST</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group ">
+                          <label for="Project">Project:</label>
+                          <select class="form-control" name="project_id">
+                                @foreach ($projects as $project)
+                                    <option value="{{ $project->id }}">{{ $project->id }}</option>
+                                @endforeach
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="text-center">
+                                <button class="btn btn-success" type="submit">Update</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
             </div>
-          </div>
         </div>
-        <div class="row">
-          <div class="col-md-4"></div>
-          <div class="form-group col-md-4" style="margin-top:60px">
-            <button type="submit" class="btn btn-success">Update</button>
-          </div>
-        </div>
-      </form>
     </div>
-  </body>
-</html>
+
+  </div>
+
+@endsection
+
+
+    

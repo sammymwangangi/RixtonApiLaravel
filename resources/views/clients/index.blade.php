@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Clients</title>
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
-  </head>
-  <body>
+@extends('layouts.app')
+
+@section('content')
+
     <div class="container">
       <br>
           <div class="row">
@@ -53,7 +48,7 @@
         <th>URL</th>
         <th>VERB</th>
         <th>INPUT</th>
-        <th>Project Name</th>
+        <th>PROJECT ID</th>
         <th colspan="2">Action</th>
       </tr>
     </thead>
@@ -65,13 +60,14 @@
         <td><a href="{{$client['url']}}">{{$client['url']}}</a></td>
         <td>{{$client['verb']}}</td>
         <td>{{$client['input']}}</td>
-        <td>{{$client['project']}}</td>
+        <td>{{$client['project_id']}}</td>
         
-        <td><a href="{{action('ClientsController@edit', $client['id'])}}" class="btn btn-warning">Edit</a></td>
+        <td><a href="{{ route('clients.edit', ['client' => $client->id]) }}" class="btn btn-warning">Edit</a></td>
         <td>
-          <form action="{{action('ClientsController@destroy', $client['id'])}}" method="post">
+          <form action="{{ route('clients.destroy', ['client' => $client->id ]) }}" method="post">
             @csrf
-            <input name="_method" type="hidden" value="DELETE">
+            @method('DELETE')
+
             <button class="btn btn-danger" type="submit">Delete</button>
           </form>
         </td>
@@ -80,5 +76,4 @@
     </tbody>
   </table>
   </div>
-  </body>
-</html>
+@endsection
