@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/apitest/{id}', 'ApiTestController@apitest')->name('apitest');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('clients','ClientsController');
