@@ -25,7 +25,7 @@ ol ol {
 }
 
 .rectangle-list a:hover{
-    background: #eee;
+    background: #219dbc;
 }   
 
 .rectangle-list a:before{
@@ -35,7 +35,7 @@ ol ol {
     left: -2.5em;
     top: 50%;
     margin-top: -1em;
-    background: #fa8072;
+    background: #53cae8;
     height: 2em;
     width: 2em;
     line-height: 2em;
@@ -55,5 +55,5 @@ ol ol {
 
 .rectangle-list a:hover:after{
     left: -.5em;
-    border-left-color: #fa8072;             
+    border-left-color: #219dbc;             
 }

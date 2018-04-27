@@ -3,6 +3,17 @@
 @section('content')
 
     <div class="container">
+              @if ($message = Session::get('success'))
+
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+
+                      <p>{{ $message }}</p>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+
+              @endif
       <br>
           <div class="row">
 
@@ -25,23 +36,30 @@
     </div>
    <br>
   <div class="container">
-    <h3>Projects</h3>
+    <h3>Click a Project to Test It's API's</h3><br>
+    <i class="fas fa-hand-point-down fa-2x faa-parent animated faa-fast faa-bounce" style="color: #219dbc"></i> 
     <ol class="rectangle-list">
       @foreach($projects as $project)
-      <li><a href="">{{$project->name}}</a></li> 
+      <li><a href="{{route('apitest',['project' => $project->id])}}">{{$project->name}}</a></li> 
       @endforeach                                             
     </ol>
   </div>
-        @if ($message = Session::get('success'))
 
-        <div class="alert alert-success">
+  <br>
+  <h3>Available Projects and Their API's</h3><br>
+  <div class="accordion" id="accordion">
+  <div class="card">
+    <div class="card-header" id="project_id">
+      <h3>
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          {{$project->name}}
+        </button>
+      </h3>
+    </div>
 
-            <p>{{ $message }}</p>
-
-        </div>
-
-    @endif
-    <table class="table table-striped">
+    <div id="collapseOne" class="collapse show" aria-labelledby="project_id" data-parent="#accordion">
+      <div class="card-body">
+          <table class="table table-striped">
     <thead>
       <tr>
         <th>ID</th>
@@ -62,18 +80,22 @@
         <td>{{$client['input']}}</td>
         <td>{{$client['project_id']}}</td>
         
-        <td><a href="{{ route('clients.edit', ['client' => $client->id]) }}" class="btn btn-warning">Edit</a></td>
+        <td><a href="{{ route('clients.edit', ['client' => $client->id]) }}" class="btn btn-warning">Edit <i class="far fa-edit"></i></a></td>
         <td>
           <form action="{{ route('clients.destroy', ['client' => $client->id ]) }}" method="post">
             @csrf
             @method('DELETE')
 
-            <button class="btn btn-danger" type="submit">Delete</button>
+            <button class="btn btn-danger" type="submit">Delete <i class="far fa-trash-alt"></i></button>
           </form>
         </td>
       </tr>
       @endforeach
     </tbody>
   </table>
+      </div>
+    </div>
   </div>
+</div>
+</div>
 @endsection
