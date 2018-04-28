@@ -65,7 +65,9 @@ class ApiTestController extends Controller
           return "cURL Error #:" . $err;
         } else {
         //start logging url,project_id,response
+          $info = curl_getinfo($curl);
 
+          return 'Took ' . $info['total_time'] . ' seconds to send a request to ' . $info['url'];
         //end logging
           return $response;
         }
