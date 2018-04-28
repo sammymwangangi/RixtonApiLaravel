@@ -65,9 +65,7 @@ class ApiTestController extends Controller
           return "cURL Error #:" . $err;
         } else {
         //start logging url,project_id,response
-          $info = curl_getinfo($curl);
 
-          return 'Took ' . $info['total_time'] . ' seconds to send a request to ' . $info['url'];
         //end logging
           return $response;
         }
@@ -78,10 +76,11 @@ class ApiTestController extends Controller
 
     }
 
-    public static function testPost($url,$postdata,$project_id){
+    public static function testPost($url,$postdata,$project_id)
+    {
       //$post = ['batch_id'=> "2"];
 
-    //return json_encode($postdata);
+      //return json_encode($postdata);
 
         $curl = curl_init();
 
@@ -120,5 +119,12 @@ class ApiTestController extends Controller
           return $response;
         }
 
-             }
+    }
+
+    public function store(Request $testPost, $testGet)
+    {
+
+      //
+      
+    }
 }
