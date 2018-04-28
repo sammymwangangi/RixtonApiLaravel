@@ -1,5 +1,5 @@
 RixtonApiLaravel
-An Api Tester system build on top of Laravel.
+### An Api Tester system build on top of Laravel 5.6.
 ## Installation
 1. git clone https://github.com/sammymwangangi/RixtonApiLaravel
 2. cd RixtonApiLaravel
