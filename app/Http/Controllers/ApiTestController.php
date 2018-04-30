@@ -121,10 +121,4 @@ class ApiTestController extends Controller
 
     }
 
-    public function store(Request $testPost, $testGet)
-    {
-
-      //
-      
-    }
 }

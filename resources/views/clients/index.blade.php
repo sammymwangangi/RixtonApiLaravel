@@ -21,7 +21,7 @@
 
             <span class="float-left">
 
-                <h2>API Tester</h2>
+                <h2>Automated API Tester</h2>
 
             </span>
 
